@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "strict": true,
+    "outDir": "dist",
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

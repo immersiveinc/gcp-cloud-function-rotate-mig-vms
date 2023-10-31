@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "@google-cloud/compute": "^4.0.1",
+    "@google-cloud/functions-framework": "^3.3.0",
+    "class-validator": "^0.14.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "PROJECT=TEST REGION=us-central1 functions-framework --target=rotateManagedInstanceGroupVMs",
+    "prestart": "npm run build",
+    "gcp-build": "npm run build",
+    "deploy": "gcloud functions deploy rotate-mig --gen2 --runtime=nodejs20 --region=us-central1 --source=. --entry-point=rotateManagedInstanceGroupVMs --trigger-http --allow-unauthenticated"
+  }
+}
