@@ -10,9 +10,10 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "PROJECT=TEST REGION=us-central1 functions-framework --target=rotateManagedInstanceGroupVMs",
+    "start": "PROJECT=immersive-362502 REGION=us-central1 functions-framework --target=rotateManagedInstanceGroupVMs",
     "prestart": "npm run build",
     "gcp-build": "npm run build",
-    "deploy": "gcloud functions deploy rotate-mig --gen2 --runtime=nodejs20 --region=us-central1 --source=. --entry-point=rotateManagedInstanceGroupVMs --trigger-http --allow-unauthenticated"
+    "add-permission": "gcloud functions add-invoker-policy-binding rotate-mig --region=us-central1 --member=serviceAccount:import-yt-dlp-servers-rotator@immersive-362502.iam.gserviceaccount.com",
+    "deploy": "gcloud functions deploy rotate-mig --gen2 --runtime=nodejs20 --region=us-central1 --source=. --entry-point=rotateManagedInstanceGroupVMs --trigger-http --set-env-vars=REGION=us-central1,PROJECT=immersive-362502 && npm run add-permission"
   }
 }
